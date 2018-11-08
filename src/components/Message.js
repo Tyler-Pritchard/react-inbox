@@ -1,6 +1,11 @@
-import react from 'react'
+import React from 'react';
+
+//Message: returns this message
 
 //functional component: pass props to it
+    //****DO ALL FUNCTIONAL COMPONENTS HAVE PROPS PASSED TO THEM?**** */
+
+//all of this will be passed to MessageList as Message (in the <Message />)
 const Message = (props) => {
     return (
         <div class="row message read">
