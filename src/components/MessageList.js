@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 //builds a message list from Message
 //can be class component instead of functional-- personal preference
 
-//will import message component later
+//will import message component later..  ...it was later imported
 import Message from './Message'
 
 class MessageList extends Component {
