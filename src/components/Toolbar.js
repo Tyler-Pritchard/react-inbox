@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
-//not sure if stateful or not, but doesn't matter because we don't use state inside of them
+//per instructor: 'not sure if stateful or not, but doesn't matter because we don't use state inside of them'
 
 //
 class Toolbar extends Component {
     render() {
         return (
             <div>
+                {/* html taken from the Galvanize Inbox Style Guide */}
                 <div className="row toolbar">
                     <div className="col-md-12">
                         <p className="pull-right">

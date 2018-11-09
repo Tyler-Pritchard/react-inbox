@@ -5,11 +5,12 @@ import React, { Component } from 'react'
 
 //will import message component later..  ...it was later imported
 import Message from './Message'
+//which has '{ Component }' in it, which has 'state'(therefore, you don't need state)
 
 class MessageList extends Component {
 
     render() {
-
+        console.log(this.props.messages)     
     //use "Message: With Labels" from Inbox Style Guide because it has the most on it
 
         return (

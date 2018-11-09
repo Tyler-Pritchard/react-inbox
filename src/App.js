@@ -1,4 +1,5 @@
 //**** IS IT BEST PRACTICE TO USE { Component } ?*** */
+  //MUST have { Component } because it's used in the App classification
 import React, { Component } from 'react';
 import './App.css';
 //make sure to note sub-folders when importing Components
@@ -6,14 +7,18 @@ import Toolbar from './Components/Toolbar'
 import MessageList from './Components/MessageList'
 
 //it gets "Component" from App
+
+//"We are building App, from nothing.  Like we magically formed it from something from nothing.  But we gave it 'Component' from React-- and we're giving it 'state', which has 'messages', which is an array of objects of messages... Then we pass the DATA in state DOWN to the components (with 'props'[which IS an array of messges], ie. 'messages' will be a prop which contains 'this.state.messages')"
 class App extends Component {
 
   // this is the state data.  It was taken from the Inbox StyleGuide: Seeds 
-  //state MUST be maintained INSIDE the CLASS
+  //state MUST be maintained INSIDE the CLASS ^^^
   
-  // "this.state.messages" IS the array of messages
+  // "this.state.messages"(i.e. "App.state.messages") IS the array of messages
+    //it gets Component from App
   
   state = {
+    //named "messaged" b/c that's our seed
     messages: [
       {
         "id": 1,
@@ -81,7 +86,9 @@ class App extends Component {
       <div className="App">
         {/* put Toolbar first, b/c it's the first one */}
         <Toolbar />
-        <MessageList />
+        we pass information DOWN from 'messages'
+        <MessageList 
+          message={ this.state.messages }/>
       </div>
     );
   }
