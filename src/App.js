@@ -6,16 +6,16 @@ import './App.css';
 import Toolbar from './Components/Toolbar'
 import MessageList from './Components/MessageList'
 
-//it gets "Component" from App
+//it gets "Component" from App ---->**** NOT EXACTLY SURE WHAT HE MEANS BY THAT ****
 
-//"We are building App, from nothing.  Like we magically formed it from something from nothing.  But we gave it 'Component' from React-- and we're giving it 'state', which has 'messages', which is an array of objects of messages... Then we pass the DATA in state DOWN to the components (with 'props'[which IS an array of messges], ie. 'messages' will be a prop which contains 'this.state.messages')"
+//"We are building App, from nothing.  Like we magically formed it from something from nothing.  But we gave it 'Component' from React-- and we're giving it 'state', which has 'messages', which is an array of objects of messages... Then we pass the DATA in "state" DOWN to the components (with 'props'[which IS an array of messges], ie. 'messages' will be a prop which contains 'this.state.messages')"
 class App extends Component {
 
   // this is the state data.  It was taken from the Inbox StyleGuide: Seeds 
   //state MUST be maintained INSIDE the CLASS ^^^
   
   // "this.state.messages"(i.e. "App.state.messages") IS the array of messages
-    //it gets Component from App   <-- ***I'M NOT QUITE SURE WHAT HE MEANS***
+    //it gets "Component" from "App"   <-- *** I'M NOT QUITE SURE WHAT HE MEANS ***
   
   state = {
     //named "messages" b/c that's our seed
@@ -83,11 +83,37 @@ class App extends Component {
 
   //as a USER, I need to STAR/UN-STAR with a FUNCTION --> create in App.js
   //this function is a class property --> passed DOWN to "MessageList"
-  //we called the prop "userStarredMessage" and gave it the function "this.userStarredMessage"
+  //we called the prop "userStarredMessage" and gave it the function "this.userStarredMessage" which === "userStarredMessage = () ..."
   //it is sent to the message list as "user"
   userStarredMessage = () => {
-    console.log('here')
+    // console.log('here')
+    //toggles the star
+    message.starred = !message.starred
+
+    //next we have to SET STATE
+    //start with the original, and concat onto it message
+    //***INSTRUCTOR DOES NOT KNOW WHY USING CONCAT DOES NOT ADD ANYTHING TO THE MESSAGE**** */
+    this.setState( this.state.messages.concat(message) )
   }
+
+
+  // ++++++++++SELECTING INDIVIDUAL MESSAGES+++++++++++++
+
+  userSelectedMessage = (message) => {
+    //toggle method
+    message.selected = !message.selected
+    //inexplicable state toggle
+    this.setState( this.state.messages.concat(message) )
+  }
+  //function must then be passed DOWN
+
+
+  // +++++++++    USER READ MESSAGE ++++++++++
+  userReadMessage = () => {
+    message.read = true
+    this.setState( this.state.messages.concat(messages) )
+  }
+
 
   render() {
     return (
@@ -100,6 +126,16 @@ class App extends Component {
           //add STAR FUNCTION 
           //*** IS "userStarredMessage" ANOTHER PROPS? IT'S CONTAINED IN CLASS, BUT NOT PART OF STATE *** */
           userStarredMessage={ this.userStarredMessage } //  <-- this referres to "userStarredMessage" under the state data
+          // userSelectedMessage={this.props.userStarredMessage}
+
+          //created from "userSelected Message"
+          //pass this to message list
+          userSelectedMessage={this.userSelectedMessage}
+          //pass this info to "MessageList", where it will be passed down again, ===> "messageList"
+
+          //pass "userReadMessage" function
+          userReadMessage={ this.userReadMessage }
+
         />
       </div>
     );

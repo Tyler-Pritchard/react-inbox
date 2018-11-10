@@ -24,7 +24,15 @@ class MessageList extends Component {
                     //add the star function as props from Message
                     //cannot use "message" b/c "message" refers to the state data
                     //the information is taken from props
-                    userStarredMessage={this.props.userStarredMessage}
+                    userStarredMessage={ this.props.userStarredMessage }
+
+                    //this was passed DOWN from "messageList", so it's been passed down twice
+                    userSelectedMessage={ this.props.userSelectedMessage }
+
+                    //bring in information/function(props?) from App
+                    userReadMessage={ this.props.userReadMessage }
+                    //add "userReadMessage" to "messageList" arg; passed to arguments object in "Message.js"'s "const Message = ({..."
+
                 />
             )
         } )

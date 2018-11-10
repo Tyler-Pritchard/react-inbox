@@ -18,10 +18,12 @@ import React from 'react';
 // const Message = (props) => {
     //*** ES6 QUESTION: WHY COMMAS ON "const Message" */
     //"userStarredMessage is our function"
-const Message = ({ message, userStarredMessage }) => { 
+const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMessage }) => { 
     //set labels to label list for access
-    let labelList = message.labels.map( ( label, index ) => {
+    let labelList = messages.labels.map( ( label, index ) => {
         return (
+            //having issues with "key"
+            <span key={index} className="label label-warning">{label}</span>
 
             // copied from down-code label line. replace "dev" with "(label)"
             <span className="label label-warning">(label)</span>
@@ -49,6 +51,10 @@ const Message = ({ message, userStarredMessage }) => {
                         <input 
                             type="checkbox"
                             checked={ message.selected }
+                            //since you can select with spacebar, use "onChange"
+                            onChange={ () => userSelectedMessage( message ) }
+                            // ^^^ function will be run up in the "const Message = ..."
+                            // *****     IS THIS ^^^ RUN AS PROPS??? ******
                             />
                     </div>
                     <div 
@@ -58,6 +64,7 @@ const Message = ({ message, userStarredMessage }) => {
                         <i 
                             className={`star fa fa-star${ message.starred ? '' : '-o' }`}
                             //onClick, we use userStarredMessage, but we have to run it.  Give it the arguement "message"
+                            //runs "userStarredMessage" from the App file.
                             onClick={ () => userStarredMessage( message ) }
                         ></i>
                     </div>
@@ -74,7 +81,7 @@ const Message = ({ message, userStarredMessage }) => {
 
                 {/* use labelList created below the Message assignment up-code */}
                 {labelList}
-                <a href="http://www.tylerrobertpritchard.com">
+                <a href="#">
                     {/* Here is some message text that has a bunch of stuff */}
                 {message.subject}
                 </a>
