@@ -15,10 +15,10 @@ class App extends Component {
   //state MUST be maintained INSIDE the CLASS ^^^
   
   // "this.state.messages"(i.e. "App.state.messages") IS the array of messages
-    //it gets Component from App
+    //it gets Component from App   <-- ***I'M NOT QUITE SURE WHAT HE MEANS***
   
   state = {
-    //named "messaged" b/c that's our seed
+    //named "messages" b/c that's our seed
     messages: [
       {
         "id": 1,
@@ -81,14 +81,26 @@ class App extends Component {
     ]
   }
 
+  //as a USER, I need to STAR/UN-STAR with a FUNCTION --> create in App.js
+  //this function is a class property --> passed DOWN to "MessageList"
+  //we called the prop "userStarredMessage" and gave it the function "this.userStarredMessage"
+  //it is sent to the message list as "user"
+  userStarredMessage = () => {
+    console.log('here')
+  }
+
   render() {
     return (
       <div className="App">
         {/* put Toolbar first, b/c it's the first one */}
         <Toolbar />
-        we pass information DOWN from 'messages'
+        {/* we pass information DOWN from 'messages' */}
         <MessageList 
-          message={ this.state.messages }/>
+          messages={ this.state.messages }
+          //add STAR FUNCTION 
+          //*** IS "userStarredMessage" ANOTHER PROPS? IT'S CONTAINED IN CLASS, BUT NOT PART OF STATE *** */
+          userStarredMessage={ this.userStarredMessage } //  <-- this referres to "userStarredMessage" under the state data
+        />
       </div>
     );
   }
