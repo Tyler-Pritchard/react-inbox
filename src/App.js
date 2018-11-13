@@ -1,6 +1,9 @@
 //**** IS IT BEST PRACTICE TO USE { Component } ?*** */
   //MUST have { Component } because it's used in the App classification
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'font-awesome/css/font-awesome.css';
 import './App.css';
 //make sure to note sub-folders when importing Components
 import Toolbar from './Components/Toolbar'
@@ -85,16 +88,16 @@ class App extends Component {
   //this function is a class property --> passed DOWN to "MessageList"
   //we called the prop "userStarredMessage" and gave it the function "this.userStarredMessage" which === "userStarredMessage = () ..."
   //it is sent to the message list as "user"
-  userStarredMessage = () => {
-    // console.log('here')
-    //toggles the star
-    message.starred = !message.starred
+  // userStarredMessage = () => {
+  //   // console.log('here')
+  //   //toggles the star
+  //   message.starred = !message.starred
 
-    //next we have to SET STATE
-    //start with the original, and concat onto it message
-    //***INSTRUCTOR DOES NOT KNOW WHY USING CONCAT DOES NOT ADD ANYTHING TO THE MESSAGE**** */
-    this.setState( this.state.messages.concat(message) )
-  }
+  //   //next we have to SET STATE
+  //   //start with the original, and concat onto it message
+  //   //***INSTRUCTOR DOES NOT KNOW WHY USING CONCAT DOES NOT ADD ANYTHING TO THE MESSAGE**** */
+  //   this.setState( this.state.messages.concat(message) )
+  // }
 
 
   // ++++++++++SELECTING INDIVIDUAL MESSAGES+++++++++++++
@@ -106,13 +109,25 @@ class App extends Component {
     this.setState( this.state.messages.concat(message) )
   }
   //function must then be passed DOWN
-
+  userStarredMessage = (selectorMessage) => {
+    let {messages} =  this.state;
+    messages.forEach(message => {
+      if (message.id === selectorMessage.id) {
+      //toggle method
+      message.starred = !message.starred
+        
+      }
+    })
+    this.setState({messages})
+    //inexplicable state toggle
+    // this.setState( this.state.messages.concat(message) )
+  }
 
   // +++++++++    USER READ MESSAGE ++++++++++
-  userReadMessage = () => {
-    message.read = true
-    this.setState( this.state.messages.concat(messages) )
-  }
+  // userReadMessage = () => {
+  //   message.read = true
+  //   this.setState( this.state.messages.concat(messages) )
+  // }
 
 
   render() {
@@ -130,7 +145,7 @@ class App extends Component {
 
           //created from "userSelected Message"
           //pass this to message list
-          userSelectedMessage={this.userSelectedMessage}
+          userSelectedMessage={ this.userSelectedMessage }
           //pass this info to "MessageList", where it will be passed down again, ===> "messageList"
 
           //pass "userReadMessage" function

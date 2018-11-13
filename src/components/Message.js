@@ -20,16 +20,11 @@ import React from 'react';
     //"userStarredMessage is our function"
 const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMessage }) => { 
     //set labels to label list for access
-    let labelList = messages.labels.map( ( label, index ) => {
-        return (
-            //having issues with "key"
-            <span key={index} className="label label-warning">{label}</span>
-
+    let labelList = message.labels.map( ( label, index ) => 
             // copied from down-code label line. replace "dev" with "(label)"
-            <span className="label label-warning">(label)</span>
-            //then use "labelList" in label className
-        )
-    }   )
+        <span key={index} className="label label-warning">{ label }
+        </span>)
+        //then use "labelList" in label className
 
     return (
         //this line cannot default the message to "read"... refactor to take variable(ie, props.message) using ES6; Use a boolean value(which corresponds to the props.message.read in App array) to set the default value of read status --->
@@ -51,10 +46,6 @@ const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMes
                         <input 
                             type="checkbox"
                             checked={ message.selected }
-                            //since you can select with spacebar, use "onChange"
-                            onChange={ () => userSelectedMessage( message ) }
-                            // ^^^ function will be run up in the "const Message = ..."
-                            // *****     IS THIS ^^^ RUN AS PROPS??? ******
                             />
                     </div>
                     <div 
@@ -64,7 +55,6 @@ const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMes
                         <i 
                             className={`star fa fa-star${ message.starred ? '' : '-o' }`}
                             //onClick, we use userStarredMessage, but we have to run it.  Give it the arguement "message"
-                            //runs "userStarredMessage" from the App file.
                             onClick={ () => userStarredMessage( message ) }
                         ></i>
                     </div>
@@ -72,6 +62,7 @@ const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMes
             </div>
             <div 
                 className="col-xs-11"
+                onClick={ () => userReadMessage( message ) }
             >
                 {/* labels comes down as an array value in message. assigned to variable labelList up-code.  Move "dev" label up-code into labelList, replace "dev" with "(label)". */}
                 {/* <span className="label label-warning">dev</span> */}
