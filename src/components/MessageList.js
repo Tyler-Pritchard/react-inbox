@@ -7,6 +7,7 @@ import React, { Component } from 'react'
 import Message from './Message'
 //which has '{ Component }' in it, which has 'state'(therefore, you don't need state)
 
+//A class component requires you to extend from "React.Component" and create a render function which returns a React element.
 class MessageList extends Component {
 
     render() {

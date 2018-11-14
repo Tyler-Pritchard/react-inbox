@@ -105,7 +105,7 @@ class App extends Component {
   userSelectedMessage = (message) => {
     //toggle method
     message.selected = !message.selected
-    //inexplicable state toggle
+    //inexplicable state-toggle from video
     this.setState( this.state.messages.concat(message) )
   }
   //function must then be passed DOWN
@@ -118,23 +118,52 @@ class App extends Component {
         
       }
     })
+    //by calling "this.setState" from an onClick(see Message.js for click) we tell React to re-render whenever it's clicked
+      //automatically updates child components
     this.setState({messages})
-    //inexplicable state toggle
-    // this.setState( this.state.messages.concat(message) )
   }
 
   // +++++++++    USER READ MESSAGE ++++++++++
-  // userReadMessage = () => {
-  //   message.read = true
-  //   this.setState( this.state.messages.concat(messages) )
-  // }
+  userReadMessage = (selectorMessage) => {
+    let {messages} =  this.state;
+    messages.forEach(message => {
+      if (message.id === selectorMessage.id) {
+      //toggle method
+        message.read = !message.read 
+      }
+    })
+    this.setState({messages})
+  }
+
+  // ++++++++++++++selectedIndicator (for Toolbar) +++++++++++++++
+
+  selectedIndicator = () => {
+    let amountSelected =  this.state.messages.filter( message => {
+      return message.selected
+    } ).length
+
+    let action = ''
+
+    if (amountSelected === this.state.messages.length) {
+      action = '-check'
+    } else if (amountSelected === 0) {
+      action = ''
+    } else {
+      action = '-minus'
+    }
+
+    return action
+  }
 
 
+  //render method returns a DESCRIPTION of what is seen on screen
+  //render RETURNS A REACT ELEMENT(lightweight description of what to render)
   render() {
     return (
       <div className="App">
         {/* put Toolbar first, b/c it's the first one */}
-        <Toolbar />
+        <Toolbar 
+          selectedIndicator={ this.selectedIndicator } />
         {/* we pass information DOWN from 'messages' */}
         <MessageList 
           messages={ this.state.messages }
@@ -143,7 +172,6 @@ class App extends Component {
           userStarredMessage={ this.userStarredMessage } //  <-- this referres to "userStarredMessage" under the state data
           // userSelectedMessage={this.props.userStarredMessage}
 
-          //created from "userSelected Message"
           //pass this to message list
           userSelectedMessage={ this.userSelectedMessage }
           //pass this info to "MessageList", where it will be passed down again, ===> "messageList"

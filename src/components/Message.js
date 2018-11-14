@@ -4,7 +4,7 @@ import React from 'react';
 
 //functional component: pass props to it
     // ****DO ALL FUNCTIONAL COMPONENTS HAVE PROPS PASSED TO THEM?****
-        //not REQUIRED, but pointless to not have them b/c you could just make ONE item (instead of a template for many items) and producing one. 
+        //ANSWER: not REQUIRED, but pointless to not have them b/c you could just make ONE item (instead of a template for many items) and producing one. 
     
 
 //all of this will be passed to MessageList as Message (in the <Message />)
@@ -12,12 +12,12 @@ import React from 'react';
 //  **** WHY DO WE USE "const Message = (props) => {" instead of "class ____ extends Component {"  
 //     -IS IT BECAUSE IT IS A FUNCTIONAL COMPONENT?? ----- YES.
 
+//A functional component is just a plain JavaScript function which accepts props as an argument and returns a React element. 
 
 //deconstruct props to point directly to message; 
 //refactor "<div className={`row message ${message.readrefactor..."   --->   "${message.read ?..."  use ES6
 // const Message = (props) => {
-    //*** ES6 QUESTION: WHY COMMAS ON "const Message" */
-    //"userStarredMessage is our function"
+
 const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMessage }) => { 
     //set labels to label list for access
     let labelList = message.labels.map( ( label, index ) => 
@@ -45,7 +45,7 @@ const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMes
                         {/* set checked status of messages; array in App has some values == true, others non-existent */}
                         <input 
                             type="checkbox"
-                            checked={ message.selected }
+                            checked={ message.userSelectedMessage }
                             />
                     </div>
                     <div 
@@ -62,7 +62,7 @@ const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMes
             </div>
             <div 
                 className="col-xs-11"
-                onClick={ () => userReadMessage( message ) }
+                // onClick={ () => userReadMessage( message ) }
             >
                 {/* labels comes down as an array value in message. assigned to variable labelList up-code.  Move "dev" label up-code into labelList, replace "dev" with "(label)". */}
                 {/* <span className="label label-warning">dev</span> */}
@@ -76,7 +76,7 @@ const Message = ({ message, userStarredMessage, userSelectedMessage, userReadMes
                     {/* Here is some message text that has a bunch of stuff */}
                 {message.subject}
                 </a>
-                console.log(labelList);
+                {/* console.log(labelList); */}
             </div>
 
         </div>

@@ -18,9 +18,11 @@ class Toolbar extends Component {
                         <button className="btn btn-default">
                             {/* refactor to ES6 */}
                             {/* <i className="fa fa-square-o"></i> */}
+                            {/* consult galvanize inbox style guide for button types */}
                             <i
-                                // className={`fa fa${ }-squar-o`}
+                                className={`fa fa${ this.props.selectedIndicator() }-squar-o`}
                             ></i>
+                            {/* create function to help us.... (see selectedIndicator in Apps) */}
                         </button>
 
                         <button className="btn btn-default"         disabled="disabled">
