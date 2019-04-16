@@ -5,6 +5,8 @@
   "dependencies": {
     "bootstrap": "3",
     "font-awesome": "^4.7.0",
+    "jest-environment-enzyme": "^7.0.2",
+    "jest-enzyme": "^7.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^2.1.8"
