@@ -5,8 +5,8 @@
   "dependencies": {
     "bootstrap": "3",
     "font-awesome": "^4.7.0",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "^2.1.8"
   },
   "scripts": {
@@ -23,5 +23,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1"
+  }
 }
